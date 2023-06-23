@@ -50,7 +50,9 @@ const RegistrationScreen = () => {
               placeholderTextColor="#BDBDBD"
             />
             <TouchableOpacity style={styles.isShowBtn} onPress={onShowChange}>
-              <Text style={styles.isShowBtnText}>Show</Text>
+              <Text style={styles.isShowBtnText}>
+                {isShow ? 'Hide' : 'Show'}
+              </Text>
             </TouchableOpacity>
           </View>
           <TouchableOpacity style={styles.button}>
@@ -107,8 +109,8 @@ const styles = StyleSheet.create({
     marginBottom: 33,
   },
   input: {
-    height: 20,
-    padding: 18,
+    height: 50,
+    paddingHorizontal: 18,
     backgroundColor: '#F6F6F6',
     borderRadius: 8,
     borderWidth: 1,
@@ -120,8 +122,8 @@ const styles = StyleSheet.create({
     marginBottom: 43,
   },
   passwordInput: {
-    height: 20,
-    padding: 18,
+    height: 50,
+    paddingHorizontal: 18,
     backgroundColor: '#F6F6F6',
     borderRadius: 8,
     borderWidth: 1,
@@ -129,7 +131,7 @@ const styles = StyleSheet.create({
   },
   isShowBtn: {
     position: 'absolute',
-    right: 0,
+    right: 16,
     justifyContent: 'center',
     padding: 8,
     top: 0,
@@ -152,7 +154,7 @@ const styles = StyleSheet.create({
   helpText: {
     marginTop: 16,
     textAlign: 'center',
-    color: '#1B4371;',
+    color: '#1B4371',
   },
 });
 
