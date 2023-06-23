@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import {
   View,
-  Text,
   StyleSheet,
   ImageBackground,
-  TextInput,
   TouchableOpacity,
-  TouchableHighlight,
+  Text,
+  KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
-import Add from '../assets/icons/share/add.svg';
+import Input from '../components/Input';
 
-const RegistrationScreen = () => {
+const LoginScreen = () => {
   const [isShow, setIsShow] = useState(false);
 
   const onShowChange = () => {
@@ -24,30 +24,21 @@ const RegistrationScreen = () => {
         source={require('../assets/images/main_bg.jpg')}
       >
         <View style={styles.form}>
-          <View style={styles.avatarBox}>
-            <TouchableHighlight style={styles.btnAdd}>
-              <View>
-                <Add width={25} height={25} />
-              </View>
-            </TouchableHighlight>
-          </View>
-          <Text style={styles.title}>SignUp</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Login"
-            placeholderTextColor="#BDBDBD"
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Email"
-            placeholderTextColor="#BDBDBD"
-          />
+          <Text style={styles.title}>SignIn</Text>
+          <KeyboardAvoidingView // визначаємо ОС та налаштовуємо поведінку клавіатури
+            behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
+          >
+            <Input
+              placeholder={'Email'}
+              placeholderTextColor={'#BDBDBD'}
+              propStyles={{ marginBottom: 16 }}
+            />
+          </KeyboardAvoidingView>
           <View style={styles.passwordBox}>
-            <TextInput
-              style={styles.passwordInput}
-              placeholder="Password"
+            <Input
+              placeholder={'Password'}
+              placeholderTextColor={'#BDBDBD'}
               secureTextEntry={!isShow}
-              placeholderTextColor="#BDBDBD"
             />
             <TouchableOpacity style={styles.isShowBtn} onPress={onShowChange}>
               <Text style={styles.isShowBtnText}>
@@ -64,7 +55,6 @@ const RegistrationScreen = () => {
     </View>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
@@ -77,27 +67,13 @@ const styles = StyleSheet.create({
   },
   form: {
     minHeight: 549,
-    paddingTop: 92,
+    paddingTop: 32,
     paddingLeft: 16,
     paddingRight: 16,
     borderTopStartRadius: 25,
     borderTopEndRadius: 25,
     backgroundColor: '#fff',
     position: 'relative',
-  },
-  avatarBox: {
-    position: 'absolute',
-    alignSelf: 'center',
-    width: 120,
-    height: 120,
-    top: -60,
-    borderRadius: 16,
-    backgroundColor: '#F6F6F6',
-  },
-  btnAdd: {
-    position: 'absolute',
-    right: -12.5,
-    bottom: 14,
   },
   title: {
     fontWeight: '500',
@@ -108,30 +84,13 @@ const styles = StyleSheet.create({
     color: '#212121',
     marginBottom: 33,
   },
-  input: {
-    height: 50,
-    paddingHorizontal: 18,
-    backgroundColor: '#F6F6F6',
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: '#E8E8E8',
-    marginBottom: 16,
-  },
   passwordBox: {
     position: 'relative',
     marginBottom: 43,
   },
-  passwordInput: {
-    height: 50,
-    paddingHorizontal: 18,
-    backgroundColor: '#F6F6F6',
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: '#E8E8E8',
-  },
   isShowBtn: {
     position: 'absolute',
-    right: 16,
+    right: 0,
     justifyContent: 'center',
     padding: 8,
     top: 0,
@@ -157,5 +116,4 @@ const styles = StyleSheet.create({
     color: '#1B4371',
   },
 });
-
-export default RegistrationScreen;
+export default LoginScreen;
